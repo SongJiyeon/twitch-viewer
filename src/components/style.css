@@ -1,0 +1,147 @@
+body {
+  background-color: #0D0D0D;
+  padding-top: 20px;
+}
+
+.top-games {
+  background-color: #0d0d0d;
+  background-image: linear-gradient(90deg, #0d0d0d 0%, #59050c 50%, #0d0d0d 100%);
+}
+
+.card-container {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  height: 350px;
+}
+
+.card-list-title {
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-size: 35px;
+  color: rgb(229, 229, 229);
+}
+
+.card-button {
+  position: absolute;
+  line-height: 300px;
+  bottom: 0;
+  z-index: 1;
+  width: 70px;
+  color: rgb(229, 229, 229, 0.8);
+  background-color: rgb(13, 13, 13, 0.3);
+  border: none;
+}
+
+.card-button:hover {
+  background-color: rgb(13, 13, 13, 0.7);
+  cursor: pointer;
+}
+
+.card-prev-button {
+  left: 0;
+}
+
+.card-next-button {
+  right: 0;
+}
+
+.card-list {
+  display: flex;
+  width: 100%;
+  overflow: scroll;
+}
+
+.card-list::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  position: relative;
+  margin-right: 10px;
+  color: white;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-title {
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 255, 255, 0.8);
+}
+
+.game-streams {
+  display: flex;
+  height: 200px;
+}
+
+.modal-active {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-hide {
+  display: none;
+}
+
+.modal-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 450px;
+  top: 20%;
+  background-color: #0D0D0D;
+}
+
+.stream-video {
+  position: absolute;
+  width: 800px;
+  height: 450px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  right: 0;
+  background-color: #0D0D0D;
+}
+
+.stream-username {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.stream-details {
+  position: absolute;
+  bottom: 150px;
+}
+
+.stream-title {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.stream-info {
+  position: relative;
+  padding-left: 30px;
+  width: 600px;
+  text-align: left;
+  top: 60px;
+  font-size: 20px;
+  color: rgb(229, 229, 229);
+}
+
+.stream-info > div > * {
+  display: flex;
+  height: 30px;
+}
+
+.stream-info > div > div > .title {
+  font-weight: bold;
+  margin-right: 10px;
+}
