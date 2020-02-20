@@ -2,12 +2,12 @@ import { connect } from "react-redux";
 import CardList from "../components/CardList";
 import { fetchTopGames, fetchGameStreams } from "../utils/api";
 import { PREV, NEXT } from "../constants/modeNames";
+import { setGameNameAction } from "../actions/index";
 
-const CARDWIDTH = '200';
-const CARDHEIGHT = '272';
+const CARDWIDTH = '160';
+const CARDHEIGHT = '240';
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     cards: state.topGames,
     cursor: null,
@@ -17,7 +17,9 @@ const mapStateToProps = state => {
     },
     setCardImgUrl(card) {
       return card.box_art_url.replace('{width}', CARDWIDTH).replace('{height}', CARDHEIGHT);
-    }
+    },
+    pending: state.topGamePending,
+    error: state.error
   };
 };
 
@@ -28,15 +30,18 @@ const mapDispatchToProps = dispatch => {
     },
     onCardClick(game) {
       fetchGameStreams(game.id, dispatch, null, null);
+      dispatch(setGameNameAction(game.name));
     },
     onButtonClick(mode) {
+      const cardList = document.querySelector('.card-list');
+      const cardContainer = document.querySelector('.card-container');
       switch(mode) {
         case PREV:
-          return console.log('prev');
+          return cardList.scrollLeft -= cardContainer.offsetWidth;
         case NEXT:
-          return console.log('next');
+          return cardList.scrollLeft += cardContainer.offsetWidth;
         default:
-          return console.log('default');
+          return cardList.scrollLeft += cardContainer.offsetWidth;
       }
     }
   };

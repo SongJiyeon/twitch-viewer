@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchTopGamesAction, fetchGameStreamsAction } from "../actions";
+import * as actions from "../actions";
 
 const api = axios.create({
   headers: {
@@ -8,12 +8,23 @@ const api = axios.create({
 });
 
 export const fetchTopGames = async (dispatch) => {
-  const result = await api.get('https://api.twitch.tv/helix/games/top?first=10');
-  await dispatch(fetchTopGamesAction(result.data.data));
+  await dispatch(actions.fetchTopGamesPending());
+  try {
+    const result = await api.get('https://api.twitch.tv/helix/games/top?first=10');
+    await dispatch(actions.fetchTopGamesSuccess(result.data.data));
+  } catch (error) {
+    dispatch(actions.fetchTopGamesError());
+  }
 };
 
 export const fetchGameStreams = async (gameId, dispatch, cursor, mode) => {
-  const url = `https://api.twitch.tv/helix/streams?game_id=${gameId}`;
-  const result = await api.get(cursor ? url+`&${mode}=${cursor}` : url);
-  await dispatch(fetchGameStreamsAction(result.data.data, result.data.pagination.cursor));
+  await dispatch(actions.fetchGameStreamsPending());
+  try {
+    const url = `https://api.twitch.tv/helix/streams?game_id=${gameId}`;
+    const result = await api.get(cursor ? url+`&${mode}=${cursor}` : url)
+    dispatch(actions.fetchGameStreamsSuccess(result.data.data, result.data.pagination.cursor));
+  } catch (error) {
+    dispatch(actions.fetchGameStreamsError());
+  }
+  
 };

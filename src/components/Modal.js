@@ -2,13 +2,17 @@ import React from 'react';
 
 export default function Modal ({ isModalOpen, onClick, stream }) {
   const url = `https://player.twitch.tv/?channel=${stream.user_name}&autoplay=false`;
+  const streamerUrl = `https://www.twitch.tv/${stream.user_name}`;
   const date = new Date(stream.started_at);
   const startedDate = `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`;
   return (
-    <div className={isModalOpen ? 'modal-active' : 'modal-hide'} onClick={(event) => onClick(event)}>
+    <div className={isModalOpen ? 'modal-active modal' : 'modal-hide modal'} onClick={(event) => onClick(event)}>
       <div className='modal-container'>
+        <button className='stream-modal-close' onClick={event => onClick(event)}>
+          <i className="fas fa-times fa-3x"></i>
+        </button>
         <div className='stream-info'>
-          <div className='stream-username'>{stream.user_name}</div>
+          <a className='stream-username' href={streamerUrl}>{stream.user_name}</a>
           <div className='stream-details'>
             <div className='stream-title'>{stream.title}</div>
             <div className='stream-date'>

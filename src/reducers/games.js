@@ -1,9 +1,46 @@
 import { combineReducers } from "redux";
-import { FETCH_TOP_GAMES, FETCH_GAME_STREAMS, CHANGE_SELETED_STREAM, OPEN_MODAL, CLOSE_MODAL } from "../constants/actionTypes"
+import * as types from "../constants/actionTypes"
+
+const topGamePending = (state=false, action) => {
+  switch(action.type) {
+    case types.FETCH_TOP_GAMES_PENDING:
+      return true;
+    case types.FETCH_TOP_GAMES_SUCCESS:
+      return false;
+    case types.FETCH_TOP_GAMES_ERROR:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const gameStreamPending = (state=false, action) => {
+  switch(action.type) {
+    case types.FETCH_GAME_STREAMS_PENDING:
+      return true;
+    case types.FETCH_GAME_STREAMS_SUCCESS:
+      return false;
+    case types.FETCH_GAME_STREAMS_ERROR:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const error = (state=false, action) => {
+  switch(action.type) {
+    case types.FETCH_TOP_GAMES_ERROR:
+      return true;
+    case types.FETCH_GAME_STREAMS_ERROR:
+      return true;
+    default:
+      return state;
+  }
+};
 
 const topGames = (state=[], action) => {
   switch(action.type) {
-    case FETCH_TOP_GAMES:
+    case types.FETCH_TOP_GAMES_SUCCESS:
       return action.topGames;
     default:
       return state;
@@ -12,7 +49,7 @@ const topGames = (state=[], action) => {
 
 const streams = (state=[], action) => {
   switch(action.type) {
-    case FETCH_GAME_STREAMS:
+    case types.FETCH_GAME_STREAMS_SUCCESS:
       return action.streams;
     default:
       return state;
@@ -21,7 +58,7 @@ const streams = (state=[], action) => {
 
 const stream = (state={}, action) => {
   switch(action.type) {
-    case CHANGE_SELETED_STREAM:
+    case types.CHANGE_SELETED_STREAM:
       return action.stream;
     default:
       return state;
@@ -30,8 +67,17 @@ const stream = (state={}, action) => {
 
 const cursor = (state=null, action) => {
   switch(action.type) {
-    case FETCH_GAME_STREAMS:
+    case types.FETCH_GAME_STREAMS_SUCCESS:
       return action.cursor;
+    default:
+      return state;
+  }
+}
+
+const gameName = (state='', action) => {
+  switch(action.type) {
+    case types.SET_GAME_NAME:
+      return action.gameName;
     default:
       return state;
   }
@@ -39,9 +85,9 @@ const cursor = (state=null, action) => {
 
 const isModalOpen = (state=false, action) => {
   switch(action.type) {
-    case OPEN_MODAL:
+    case types.OPEN_MODAL:
       return true;
-    case CLOSE_MODAL:
+    case types.CLOSE_MODAL:
       return false;
     default:
       return state;
@@ -49,9 +95,13 @@ const isModalOpen = (state=false, action) => {
 };
 
 export default combineReducers({
+  topGamePending,
+  gameStreamPending,
+  error,
   topGames,
   streams,
   stream,
   cursor,
+  gameName,
   isModalOpen
 });

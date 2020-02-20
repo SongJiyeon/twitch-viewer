@@ -13,7 +13,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onClick(event) {
       const modal = document.querySelector('.modal-container');
-      if (!modal.contains(event.target)) {
+      const closeButton = document.querySelector('.stream-modal-close');
+      console.log(event.target);
+      if (closeButton.contains(event.target) || !modal.contains(event.target)) {
         dispatch(closeModalAction());
       }
     }

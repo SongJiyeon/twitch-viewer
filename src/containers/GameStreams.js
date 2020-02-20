@@ -4,14 +4,14 @@ import { changeSelectedStreamAction, openModalAction } from "../actions";
 import { PREV, NEXT } from "../constants/modeNames";
 import { fetchGameStreams } from "../utils/api";
 
-const CARDWIDTH = '480';
-const CARDHEIGHT = '272';
+const CARDWIDTH = '422';
+const CARDHEIGHT = '240';
 
 const mapStateToProps = state => {
   return {
     cards: state.streams,
     cursor: state.cursor,
-    title: 'Streaming Videos',
+    title: state.gameName,
     setCardTitle(card) {
       if (card.title.length > 30) {
         return card.title.slice(0, 30) + '...';
@@ -21,7 +21,9 @@ const mapStateToProps = state => {
     },
     setCardImgUrl(card) {
       return card.thumbnail_url.replace('{width}', CARDWIDTH).replace('{height}', CARDHEIGHT);;
-    }
+    },
+    pending: state.gameStreamPending,
+    error: state.error
   };
 };
 
@@ -35,13 +37,24 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(openModalAction());
     },
     onButtonClick(mode, gameId, cursor) {
+      const cardList = document.querySelector('div.game-streams div.card-list');
+      const cardContainer = document.querySelector('.card-container');
+
       switch(mode) {
         case PREV:
-          return fetchGameStreams(gameId, dispatch, cursor, 'before');
+          if (!cardList.scrollLeft) {
+            return fetchGameStreams(gameId, dispatch, cursor, 'before');
+          } else {
+            return cardList.scrollLeft -= cardContainer.offsetWidth;
+          }
         case NEXT:
-          return fetchGameStreams(gameId, dispatch, cursor, 'after');
+          if (cardList.scrollLeft + cardList.offsetWidth === cardList.scrollWidth) {
+            return fetchGameStreams(gameId, dispatch, cursor, 'after');
+          } else {
+            return cardList.scrollLeft += cardContainer.offsetWidth;
+          }
         default:
-          return console.log('default');
+          return;
       }
     }
   };

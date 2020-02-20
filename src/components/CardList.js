@@ -1,16 +1,26 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { PREV, NEXT } from "../constants/modeNames";
+import Error from './Error'
 import './style.css';
 
-export default function CardList ({ cards, cursor=null, title, setCardTitle, setCardImgUrl, onRender, onCardClick, onButtonClick }) {
+export default function CardList ({ cards, cursor=null, title, setCardTitle, setCardImgUrl, onRender, onCardClick, onButtonClick, pending, error }) {
   useEffect(() => {
     onRender();
   }, []);
 
+  if (pending) {
+    return (
+      <div>
+        <i className="fas fa-spinner fa-7x"></i>
+      </div>
+    );
+  }
+
   return (
     <div className='card-container'>
-      {!!cards.length &&
+      {error && <Error />}
+      {!!cards.length && !error &&
       <div>
         <div className='card-list-title'>{title}</div>
         <div className='card-list'>
