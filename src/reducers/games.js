@@ -83,7 +83,7 @@ const gameName = (state='', action) => {
   }
 }
 
-const isModalOpen = (state=false, action) => {
+const isActive = (state=false, action) => {
   switch(action.type) {
     case types.OPEN_MODAL:
       return true;
@@ -103,5 +103,5 @@ export default combineReducers({
   stream,
   cursor,
   gameName,
-  isModalOpen
+  isActive
 });

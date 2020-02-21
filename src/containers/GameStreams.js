@@ -1,37 +1,20 @@
 import { connect } from "react-redux";
-import CardList from "../components/CardList";
+import GameStreams from "../components/GameStreams";
 import { changeSelectedStreamAction, openModalAction } from "../actions";
 import { PREV, NEXT } from "../constants/modeNames";
 import { fetchGameStreams } from "../utils/api";
-
-const CARDWIDTH = '422';
-const CARDHEIGHT = '240';
 
 const mapStateToProps = state => {
   return {
     cards: state.streams,
     cursor: state.cursor,
     title: state.gameName,
-    setCardTitle(card) {
-      if (card.title.length > 30) {
-        return card.title.slice(0, 30) + '...';
-      } else {
-        return card.title;
-      }
-    },
-    setCardImgUrl(card) {
-      return card.thumbnail_url.replace('{width}', CARDWIDTH).replace('{height}', CARDHEIGHT);;
-    },
-    pending: state.gameStreamPending,
-    error: state.error
+    pending: state.gameStreamPending
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onRender() {
-      return null;
-    },
     onCardClick(stream) {
       dispatch(changeSelectedStreamAction(stream));
       dispatch(openModalAction());
@@ -57,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
           return;
       }
     }
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardList);
+export default connect(mapStateToProps, mapDispatchToProps)(GameStreams);

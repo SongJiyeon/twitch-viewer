@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CardList ( {title} ) {
+export default function Error () {
 
   setTimeout(() => {
     window.location.reload();
@@ -8,7 +8,7 @@ export default function CardList ( {title} ) {
 
   return (
     <div className='error-container'>
-      Fail To Load {title} 😱
+      Fail To Load &#128561;
     </div>
   );
 };
