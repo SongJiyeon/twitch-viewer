@@ -13,7 +13,6 @@ import ModalDetails from './components/ModalDetails';
 class App extends Component {
 
   componentDidMount() {
-    console.log('fetched!');
     this.props.fetchTopGames();
   }
 
