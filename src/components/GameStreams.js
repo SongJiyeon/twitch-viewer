@@ -1,6 +1,6 @@
 import React from 'react';
-import { PREV, NEXT } from "../constants/modeNames";
-import CardList from "./layouts/CardList";
+import { PREV, NEXT } from '../constants/modeNames';
+import CardList from './layouts/CardList';
 import PrevBoxButton from './buttons/PrevBoxButton';
 import NextBoxButton from './buttons/NextBoxButton';
 import Loading from './status/Loading';
