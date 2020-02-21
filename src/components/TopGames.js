@@ -1,8 +1,8 @@
 import React from 'react';
-import { PREV, NEXT } from "../constants/modeNames";
-import PrevBoxButton from "./buttons/PrevBoxButton";
-import NextBoxButton from "./buttons/NextBoxButton";
-import CardList from "./layouts/CardList";
+import { PREV, NEXT } from '../constants/modeNames';
+import PrevBoxButton from './buttons/PrevBoxButton';
+import NextBoxButton from './buttons/NextBoxButton';
+import CardList from './layouts/CardList';
 import Loading from './status/Loading';
 import './style.css';
 
@@ -34,7 +34,7 @@ export default function TopGames ({ cards, pending, onCardClick }) {
       <Loading />
       :(
       <CardList
-        title='Top Games'
+        title="Top Games"
         cards={cards}
         setCardImgUrl={setCardImgUrl}
         onClick={onCardClick}>
