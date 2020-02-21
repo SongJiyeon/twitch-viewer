@@ -9,7 +9,13 @@ export default function ModalDetails ({ stream }) {
   return (
     <>
       <div className='stream-info'>
-        <a className='stream-username' href={streamerUrl}>{stream.user_name}</a>
+        <a className='stream-username' href={streamerUrl}>
+          {stream.user_name}
+          <div className='tooltip'>
+            <p>Go to {stream.user_name}</p>
+            <p>twitch page</p>
+          </div>
+        </a>
         <div className='stream-details'>
           <div className='stream-title'>{stream.title}</div>
           <div className='stream-date'>

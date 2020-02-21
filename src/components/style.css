@@ -93,7 +93,7 @@ button {
 }
 
 .card:hover {
-  transform: scale(1.1) translate(0, 5px);;
+  transform: scale(1.1) translate(0, 5px);
   z-index: 1;
   cursor: pointer;
 }
@@ -152,17 +152,36 @@ button {
 }
 
 .stream-username {
+  position: relative;
   text-decoration: none;
   font-size: 30px;
   font-weight: bold;
   color: rgb(229, 229, 229);
 }
 
-.stream-username:hover {
-  -webkit-text-fill-color: rgb(229, 229, 229);
-  -webkit-text-stroke-color: red;
-  -webkit-text-stroke-width: 0.5px;
+.stream-username:hover .tooltip {
+  visibility: visible;
   cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: rgb(126, 126, 126);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  min-width: 120px;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.tooltip > p {
+  margin: 0;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .stream-details {

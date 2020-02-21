@@ -11,10 +11,6 @@ const CARDHEIGHT = '240';
 
 export default function TopGames ({ cards, pending, onCardClick }) {
 
-  const setCardTitle = (card) => {
-    return card.name;
-  };
-
   const setCardImgUrl = (card) => {
     return card.box_art_url.replace('{width}', CARDWIDTH).replace('{height}', CARDHEIGHT);
   };
@@ -40,7 +36,6 @@ export default function TopGames ({ cards, pending, onCardClick }) {
       <CardList
         title='Top Games'
         cards={cards}
-        setCardTitle={setCardTitle}
         setCardImgUrl={setCardImgUrl}
         onClick={onCardClick}>
         <PrevBoxButton onClick={() => onButtonClick(PREV)} />
