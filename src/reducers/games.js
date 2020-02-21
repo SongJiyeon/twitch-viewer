@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import * as types from "../constants/actionTypes"
 
-const topGamePending = (state=false, action) => {
+const topGamePending = (state = false, action) => {
   switch(action.type) {
     case types.FETCH_TOP_GAMES_PENDING:
       return true;
@@ -14,7 +14,7 @@ const topGamePending = (state=false, action) => {
   }
 };
 
-const gameStreamPending = (state=false, action) => {
+const gameStreamPending = (state = false, action) => {
   switch(action.type) {
     case types.FETCH_GAME_STREAMS_PENDING:
       return true;
@@ -27,7 +27,7 @@ const gameStreamPending = (state=false, action) => {
   }
 };
 
-const error = (state=false, action) => {
+const error = (state = false, action) => {
   switch(action.type) {
     case types.FETCH_TOP_GAMES_ERROR:
       return true;
@@ -38,7 +38,7 @@ const error = (state=false, action) => {
   }
 };
 
-const topGames = (state=[], action) => {
+const topGames = (state = [], action) => {
   switch(action.type) {
     case types.FETCH_TOP_GAMES_SUCCESS:
       return action.topGames;
@@ -47,7 +47,7 @@ const topGames = (state=[], action) => {
   };
 };
 
-const streams = (state=[], action) => {
+const streams = (state = [], action) => {
   switch(action.type) {
     case types.FETCH_GAME_STREAMS_SUCCESS:
       return action.streams;
@@ -56,7 +56,7 @@ const streams = (state=[], action) => {
   };
 };
 
-const stream = (state={}, action) => {
+const stream = (state = {}, action) => {
   switch(action.type) {
     case types.CHANGE_SELETED_STREAM:
       return action.stream;
@@ -65,7 +65,7 @@ const stream = (state={}, action) => {
     };
 };
 
-const cursor = (state=null, action) => {
+const cursor = (state = null, action) => {
   switch(action.type) {
     case types.FETCH_GAME_STREAMS_SUCCESS:
       return action.cursor;
@@ -74,7 +74,7 @@ const cursor = (state=null, action) => {
   }
 }
 
-const gameName = (state='', action) => {
+const gameName = (state = '', action) => {
   switch(action.type) {
     case types.SET_GAME_NAME:
       return action.gameName;
@@ -83,7 +83,7 @@ const gameName = (state='', action) => {
   }
 }
 
-const isActive = (state=false, action) => {
+const isActive = (state = false, action) => {
   switch(action.type) {
     case types.OPEN_MODAL:
       return true;

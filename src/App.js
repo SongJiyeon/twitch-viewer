@@ -8,6 +8,7 @@ import Error from './components/status/Error';
 import { fetchTopGames, fetchGameStreams } from './utils/api';
 import { setGameNameAction } from './actions/index'
 import './App.css';
+import ModalDetails from './components/ModalDetails';
 
 class App extends Component {
 
@@ -33,7 +34,7 @@ class App extends Component {
           </div>
         </div>
         )}
-        {this.props.isActive && <Modal />}
+        {this.props.isActive && <Modal><ModalDetails stream={this.props.stream} /></Modal>}
       </div>
     );
   }
@@ -42,6 +43,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     topGames: state.topGames,
+    stream: state.stream,
     isActive: state.isActive,
     error: state.error
   };

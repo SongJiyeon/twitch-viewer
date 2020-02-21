@@ -8,7 +8,7 @@ export default function Error () {
 
   return (
     <div className='error-container'>
-      Fail To Load &#128561;
+      Fail To Load {String.fromCodePoint(128561)}
     </div>
   );
 };

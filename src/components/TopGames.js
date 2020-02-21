@@ -1,8 +1,8 @@
 import React from 'react';
-import { PREV, NEXT } from "../constants/modeNames";
-import PrevBoxButton from "./buttons/PrevBoxButton";
-import NextBoxButton from "./buttons/NextBoxButton";
-import CardList from "./layouts/CardList";
+import { PREV, NEXT } from '../constants/modeNames';
+import PrevBoxButton from './buttons/PrevBoxButton';
+import NextBoxButton from './buttons/NextBoxButton';
+import CardList from './layouts/CardList';
 import Loading from './status/Loading';
 import './style.css';
 
@@ -10,10 +10,6 @@ const CARDWIDTH = '160';
 const CARDHEIGHT = '240';
 
 export default function TopGames ({ cards, pending, onCardClick }) {
-
-  const setCardTitle = (card) => {
-    return card.name;
-  };
 
   const setCardImgUrl = (card) => {
     return card.box_art_url.replace('{width}', CARDWIDTH).replace('{height}', CARDHEIGHT);
@@ -38,9 +34,8 @@ export default function TopGames ({ cards, pending, onCardClick }) {
       <Loading />
       :(
       <CardList
-        title='Top Games'
+        title="Top Games"
         cards={cards}
-        setCardTitle={setCardTitle}
         setCardImgUrl={setCardImgUrl}
         onClick={onCardClick}>
         <PrevBoxButton onClick={() => onButtonClick(PREV)} />
