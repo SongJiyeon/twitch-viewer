@@ -1,8 +1,8 @@
-import { connect } from "react-redux";
-import GameStreams from "../components/GameStreams";
-import { changeSelectedStreamAction, openModalAction } from "../actions";
-import { PREV, NEXT } from "../constants/modeNames";
-import { fetchGameStreams } from "../utils/api";
+import { connect } from 'react-redux';
+import GameStreams from '../components/GameStreams';
+import { changeSelectedStreamAction, openModalAction } from '../actions';
+import { PREV, NEXT } from '../constants/modeNames';
+import { fetchGameStreams } from '../utils/api';
 
 const mapStateToProps = state => {
   return {
@@ -26,13 +26,13 @@ const mapDispatchToProps = dispatch => {
       switch(mode) {
         case PREV:
           if (!cardList.scrollLeft) {
-            return fetchGameStreams(gameId, dispatch, cursor, 'before');
+            return fetchGameStreams(gameId, dispatch, cursor, "before");
           } else {
             return cardList.scrollLeft -= cardContainer.offsetWidth;
           }
         case NEXT:
           if (cardList.scrollLeft + cardList.offsetWidth === cardList.scrollWidth) {
-            return fetchGameStreams(gameId, dispatch, cursor, 'after');
+            return fetchGameStreams(gameId, dispatch, cursor, "after");
           } else {
             return cardList.scrollLeft += cardContainer.offsetWidth;
           }

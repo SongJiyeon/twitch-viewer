@@ -14,7 +14,7 @@ const topGamePending = (state=false, action) => {
   }
 };
 
-const gameStreamPending = (state=false, action) => {
+const gameStreamPending = (state = false, action) => {
   switch(action.type) {
     case types.FETCH_GAME_STREAMS_PENDING:
       return true;

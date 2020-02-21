@@ -10,12 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClick(event) {
-      const modal = document.querySelector('.modal-container');
-      const closeButton = document.querySelector('.modal-close');
-      if (closeButton.contains(event.target) || !modal.contains(event.target)) {
-        dispatch(closeModalAction());
-      }
+    onClose() {
+      dispatch(closeModalAction());
     }
   }
 };

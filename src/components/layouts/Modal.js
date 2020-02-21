@@ -1,15 +1,15 @@
 import React from 'react';
-import ModalDetails from '../ModalDetails';
 
-export default function Modal ({ onClick, stream }) {
+export default function Modal ({ onClose, children }) {
   return (
-    <div className='modal' onClick={(event) => onClick(event)}>
-      <div className='modal-container'>
-        <button className='modal-close' onClick={event => onClick(event)}>
-          <i className="fas fa-times fa-3x"></i>
+    <>
+      <div className='modal-background' onClick={onClose}></div>
+      <div className='modal-container modal'>
+        <button className='modal-close' onClick={onClose}>
+          <i className='fas fa-times fa-3x'></i>
         </button>
-        <ModalDetails stream={stream} />
+        {children}
       </div>
-    </div>
+    </>
   );
 };
