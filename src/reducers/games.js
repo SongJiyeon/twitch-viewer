@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import * as types from "../constants/actionTypes"
+import { combineReducers } from 'redux';
+import * as types from '../constants/actionTypes';
 
 const topGamePending = (state = false, action) => {
   switch(action.type) {

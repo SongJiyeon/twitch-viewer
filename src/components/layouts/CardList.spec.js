@@ -2,29 +2,27 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardList from './CardList';
 
-const setup = () => {
-  const MockChildren = () => {
-    return (
-      <div>
-        <div>mock children</div>
-      </div>
-    );
-  }
+const props = {
+  title: 'Top Games',
+  cards: [{ id: 1 }, { id: 2 }],
+  onClick: jest.fn(),
+  setCardTitle: jest.fn(() => {
+    return 'CARD TITLE';
+  }),
+  setCardImgUrl: jest.fn(() => {
+    return 'URL';
+  })
+};
 
-  const props = {
-    title: 'Top Games',
-    children: MockChildren(),
-    cards: [{ id: 1 }, { id: 2 }],
-    onClick: jest.fn(),
-    setCardTitle: jest.fn(() => {
-      return 'CARD TITLE';
-    }),
-    setCardImgUrl: jest.fn(() => {
-      return 'URL';
-    })
-  };
+const setup = (title, onClick) => {
 
-  const component = shallow(<CardList props={props} />);
+  const component = shallow(
+  <CardList
+    title={title}
+    cards={[{ id: 1 }, { id: 2 }]}
+    onClick={() => onClick('card')}
+  />
+  );
 
   return {
     component: component,
@@ -38,8 +36,15 @@ const setup = () => {
 
 describe('CardList Component', () => {
   it('should display title', () => {
-    const { title } = setup();
+    const { title } = setup('Top Games');
     const TEXT = 'Top Games';
     expect(title.text()).toMatch(TEXT);
+  });
+
+  it('should run function when card is clicked', () => {
+    const onClick = jest.fn();
+    const { card } = setup(onClick);
+    card.first().simulate('click');
+    expect(onClick.mock.calls.length).toBe(1);
   });
 });
