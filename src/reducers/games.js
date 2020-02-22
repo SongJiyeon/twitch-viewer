@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import * as types from '../constants/actionTypes';
+import { combineReducers } from 'redux'
+import * as types from "../constants/actionTypes"
 
 const topGamePending = (state = false, action) => {
   switch(action.type) {
@@ -83,16 +83,16 @@ const gameName = (state = '', action) => {
   }
 }
 
-const isActive = (state = false, action) => {
+const isModalActive = (state = false, action) => {
   switch(action.type) {
     case types.OPEN_MODAL:
       return true;
     case types.CLOSE_MODAL:
       return false;
     default:
-      return state;
-  };
-};
+      return false;
+  }
+}
 
 export default combineReducers({
   topGamePending,
@@ -103,5 +103,5 @@ export default combineReducers({
   stream,
   cursor,
   gameName,
-  isActive
+  isModalActive
 });

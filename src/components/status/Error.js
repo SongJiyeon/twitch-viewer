@@ -3,7 +3,7 @@ import React from 'react';
 export default function Error () {
 
   setTimeout(() => {
-    window.location.reload();
+    // window.location.reload();
   }, 2000);
 
   return (

@@ -4,19 +4,13 @@ import CardList from './layouts/CardList';
 import PrevBoxButton from './buttons/PrevBoxButton';
 import NextBoxButton from './buttons/NextBoxButton';
 import Loading from './status/Loading';
+import { truncate } from '../utils/helper'
 import './style.css';
 
 const CARDWIDTH = '422';
 const CARDHEIGHT = '240';
 
 export default function GameStreams ({ cards, cursor, title, pending, onCardClick, onButtonClick }) {
-  const setCardTitle = (card) => {
-    if (card.title.length > 30) {
-      return card.title.slice(0, 30) + '...';
-    } else {
-      return card.title;
-    }
-  }
   const setCardImgUrl = (card) => {
     return card.thumbnail_url.replace('{width}', CARDWIDTH).replace('{height}', CARDHEIGHT);;
   }
@@ -28,7 +22,7 @@ export default function GameStreams ({ cards, cursor, title, pending, onCardClic
       <CardList
         title={title}
         cards={cards}
-        setCardTitle={setCardTitle}
+        setCardTitle={truncate}
         setCardImgUrl={setCardImgUrl}
         onClick={onCardClick}>
         <PrevBoxButton onClick={() => onButtonClick(PREV, cards[0].game_id, cursor)} />

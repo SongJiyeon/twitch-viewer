@@ -2,25 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardList from './CardList';
 
-const props = {
-  title: 'Top Games',
-  cards: [{ id: 1 }, { id: 2 }],
-  onClick: jest.fn(),
-  setCardTitle: jest.fn(() => {
-    return 'CARD TITLE';
-  }),
-  setCardImgUrl: jest.fn(() => {
-    return 'URL';
-  })
-};
-
 const setup = (title, onClick) => {
 
   const component = shallow(
   <CardList
     title={title}
     cards={[{ id: 1 }, { id: 2 }]}
-    onClick={() => onClick('card')}
+    onClick={onClick}
   />
   );
 
@@ -43,7 +31,7 @@ describe('CardList Component', () => {
 
   it('should run function when card is clicked', () => {
     const onClick = jest.fn();
-    const { card } = setup(onClick);
+    const { card } = setup('Top Games', onClick);
     card.first().simulate('click');
     expect(onClick.mock.calls.length).toBe(1);
   });
