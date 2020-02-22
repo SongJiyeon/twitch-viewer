@@ -12,6 +12,8 @@ export const fetchTopGames = async (dispatch) => {
   try {
     const result = await api.get('https://api.twitch.tv/helix/games/top?first=10');
     await dispatch(actions.fetchTopGamesSuccess(result.data.data));
+    await fetchGameStreams(result.data.data[0].id, dispatch);
+    await dispatch(actions.setGameNameAction("the Best Game Now"));
   } catch (error) {
     dispatch(actions.fetchTopGamesError());
   }
@@ -26,5 +28,4 @@ export const fetchGameStreams = async (gameId, dispatch, cursor, mode) => {
   } catch (error) {
     dispatch(actions.fetchGameStreamsError());
   }
-  
 };

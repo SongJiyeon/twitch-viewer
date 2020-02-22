@@ -2,12 +2,6 @@ import { connect } from 'react-redux';
 import { closeModalAction } from '../actions';
 import Modal from '../components/layouts/Modal';
 
-const mapStateToProps = state => {
-  return {
-    stream: state.stream
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     onClose() {
@@ -16,4 +10,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(null, mapDispatchToProps)(Modal);

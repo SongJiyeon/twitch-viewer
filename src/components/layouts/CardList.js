@@ -8,9 +8,9 @@ export default function CardList (props) {
       <div className='card-list-title'>{props.title}</div>
       <div className='card-list'>
         {props.children}
-        {props.cards && props.cards.map(card => {
+        {props.cards && props.cards.map((card, index) => {
           return (
-            <div className='card' key={card.id} onClick={() => props.onClick(card)}>
+            <div className='card' key={index} onClick={() => props.onClick(card)}>
               {props.setCardTitle && <div className='card-title'>{props.setCardTitle(card)}</div>}
               {props.setCardImgUrl && <img src={props.setCardImgUrl(card)} alt="" />}
             </div>

@@ -17,8 +17,6 @@ class App extends Component {
   }
 
   render() {
-    this.props.topGames.length && this.props.fetchBestGameStreams(this.props.topGames[0]);
-
     return (
       <div className="App">
         <Header logoUrl='https://brand.twitch.tv/assets/logos/svg/wordmark-extruded/black.svg' />
@@ -34,7 +32,10 @@ class App extends Component {
           </div>
         </div>
         )}
-        {this.props.isActive && <Modal><ModalDetails stream={this.props.stream} /></Modal>}
+        {this.props.isModalActive &&
+        <Modal>
+          <ModalDetails stream={this.props.stream} />
+        </Modal>}
       </div>
     );
   }
@@ -44,7 +45,8 @@ const mapStateToProps = state => {
   return {
     topGames: state.topGames,
     stream: state.stream,
-    isActive: state.isActive,
+    pending: state.topGamePending,
+    isModalActive: state.isModalActive,
     error: state.error
   };
 };
@@ -52,9 +54,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTopGames() {
-      fetchTopGames(dispatch);
+      return new Promise(resolve => {
+        fetchTopGames(dispatch);
+        resolve();
+      });
     },
     fetchBestGameStreams(bestGame) {
+      console.log('best game@');
       fetchGameStreams(bestGame.id, dispatch);
       dispatch(setGameNameAction("the Best Game Now"));
     }
